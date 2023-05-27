@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <!-- <button v-on:click='showInfo' id="root">TRY TO CLICK ME!</button> -->
+    <!-- <button @click='showInfo' id="root">TRY TO CLICK ME!</button>     简写形式  -->
+    <div id="root">
+        <button @click='showInfo1'>TRY TO CLICK ME!(不传参)</button>
+        <button @click='showInfo2(66,$event)'>TRY TO CLICK ME!（传参）</button> <!-- 使用$event占位，在函数中用一个接住event-->
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '#root',
+        data: {
+        },
+        methods: {
+            showInfo1(event) {
+                console.log(this === vm);   //此处的this指向VM
+            },
+            showInfo2(number, a) {
+                console.log(number, event);
+            }
+        }
+    })
+</script>
+
+</html>

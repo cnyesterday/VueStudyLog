@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>今天天气很{{weather}}</h2>
+        <!-- 在里面可以写一些简单的语句 -->
+        <!-- <button @click="isHot=!isHot">切换天气</button> -->
+        <button @click="change">切换天气</button>
+        <hr>
+        <h2>a的值是{{numbers.a}}</h2>
+        <button @click="numbers.a++">点我使a+1</button>
+        <h2>a的值是{{numbers.b}}</h2>
+        <button @click="numbers.b++">点我使b+1</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+                numbers: {
+                    a: 1,
+                    b: 1,
+                },
+            },
+            methods: {
+                change() {
+                    this.isHot = !this.isHot;
+                }
+            },
+            computed: {
+                weather() {
+                    return this.isHot ? '炎热' : '凉爽';
+                }
+            },
+            watch: {
+                // 不仅可以监视原来的属性，还可以监视计算属性，如此案例中的weather
+                isHot: {
+                    immediate: true,  // immediate 立即的 默认值为false,在为true时，即使值不发生改变，也会触发handler里面的语句 第一个值显示当前的值，第二个值为undefined
+                    handler(newValue, oldValue) {
+                        console.log('isHot被改变了', newValue, oldValue);
+                    }
+                },
+                /* 'numbers.a': {
+                    handler(newValue, oldValue) {
+                        console.log('a的值改变了');
+                    }
+                } */
+                numbers: {
+                    // vue 里面的watch属性默认不能监视到子级结构中的某个属性的变化
+                    // 如果需要监视，则需要deep:true语句采取深度监视
+                    deep: true,  // 深度监视
+                    handler() {
+                        console.log('numbers里的值被改变了');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .name {
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 50px;
+            color: yellow;
+            background-color: skyblue;
+            cursor: pointer;
+        }
+
+        .name1 {
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 50px;
+            color: skyblue;
+            background-color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="name">
+        姜卓雅
+    </div>
+    <script>
+        var name1 = document.querySelector('.name');
+        name1.addEventListener('click', function () {
+            if (name1.innerHTML == '姜卓雅') {
+                name1.innerHTML = '姜卓嘉'
+                name1.className = 'name1'
+            }
+            else {
+                name1.innerHTML = '姜卓雅'
+                name1.className = 'name'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <style>
+        input {
+            margin-top: 20px;
+            /* display: block; */
+        }
+    </style>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        姓：<input type="text" placeholder="请输入您的姓" v-model="firstName"><br>
+        名：<input type="text" placeholder="请输入您的名" v-model="lastName">
+        <p>全名：{{fullname()}}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: '',
+                lastName: ''
+            },
+            methods: {
+                fullname() {
+                    return this.firstName.slice(0, 3) + '-' + this.lastName  // slice(0.3) 截取字符串0，1，2的字符
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>今天天气很{{weather}}</h2>
+        <!-- 在里面可以写一些简单的语句 -->
+        <!-- <button @click="isHot=!isHot">切换天气</button> -->
+        <button @click="change">切换天气</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+            },
+            methods: {
+                change() {
+                    this.isHot = !this.isHot;
+                }
+            },
+            computed: {
+                weather() {
+                    return this.isHot ? '炎热' : '凉爽';
+                }
+            },
+            /*  watch: {
+                 // 不仅可以监视原来的属性，还可以监视计算属性，如此案例中的weather
+                 isHot: {
+                     immediate: true,  // immediate 立即的 默认值为false,在为true时，即使值不发生改变，也会触发handler里面的语句 第一个值显示当前的值，第二个值为undefined
+                     handler(newValue, oldValue) {
+                         console.log('isHot被改变了', newValue, oldValue);
+                     }
+                 }
+             } */
+        })
+        // 第二种监视的方法
+        vm.$watch('isHot', {
+            immediate: true,  // immediate 立即的 默认值为false,在为true时，即使值不发生改变，也会触发handler里面的语句 第一个值显示当前的值，第二个值为undefined
+            handler(newValue, oldValue) {
+                console.log('isHot被改变了', newValue, oldValue);
+            }
+        })
+
+        // 第一种监视的方法是在已经写出方法的时候就决定要监视某个属性的时候写
+        // 第二种监视方法是在后期根据需求来监视属性的时候写
+    </script>
+</body>
+
+</html>

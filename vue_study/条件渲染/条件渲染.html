@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>当前的n值是:{{n}}</h2>
+        <button @click="n++">点我n+1</button>
+        <!-- v-show 是用display = none 来实现的隐藏 ， 即是虽然看不见了，但是仍保留此节点 -->
+        <!-- 如果显示隐藏需要频繁切换 建议使用v-show -->
+        <!-- <div v-show="true">ni hao ma</div> -->
+        <!-- v-if 则会直接将此结点隐藏 -->
+        <!-- <div v-if="1 === 1">how are you</div> -->
+        <!-- <div v-show="n === 1">dota</div>
+        <div v-show="n === 2">dream3</div>
+        <div v-show="n === 3">lol</div>
+        <div v-show="n === 4">dota2</div> -->
+
+        <!-- v-if 和v-else-if 以及v-else -->
+        <!-- v-else 里面不用跟表达式或者布尔值， 因为跟了也不奏效（从逻辑上来说也是） -->
+        <!-- 且v-if 和v-else-if 的逻辑线上不能被分支打断 -->
+        <!-- <div v-if="n === 1">dota</div>
+        <div v-else-if="n === 2">dream3</div>
+        <div v-else-if="n === 3">lol</div>
+        <div v-else-if="n === 4">dota2</div>
+        <div v-else>qifan</div> -->
+
+        <!-- 使用template 来包裹可以不改变节点结构  重要 -->
+        <!-- 但是template 只能与v-if来配合使用 -->
+        <template v-if="n === 1">
+            <h2>dota2</h2>
+            <h2>dream3</h2>
+            <h2>lol</h2>
+            <h2>dota2</h2>
+        </template>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                n: 0
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

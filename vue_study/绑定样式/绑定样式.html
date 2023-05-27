@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .basic {
+            width: 1200px;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+
+        .happy {
+
+            background-color: yellow;
+            border: 1px solid orange;
+        }
+
+        .sad {
+
+            background-color: blue;
+            border: 1px solid red;
+        }
+
+        .normal {
+
+            background-color: #ccc;
+            border: 1px solid purple;
+        }
+
+        .type1 {
+            border-radius: 10px;
+        }
+
+        .type2 {
+            font-size: 40px;
+        }
+
+        .type3 {
+            text-align: center;
+        }
+    </style>
+    <script src="../../vue.js">
+
+    </script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 绑定class样式 --字符串写法，适用于样式的类名不确定，需要动态指定 -->
+        <div class="basic" :class="a" @click="changeClass">{{info}}</div>
+        <br>
+        <!-- 绑定class样式 --数组写法，适用于样式的个数不确定，名字也不确定 -->
+        <div class="basic" :class="classArr" @click="changeClass">{{info}}</div>
+        <br>
+        <!-- 绑定class样式 --字符串写法，适用于样式的类名确定，名字也确定，但是要动态决定用不用 -->
+        <div class="basic" :class="classObj" @click="changeClass">{{info}}</div>
+        <br>
+        <!-- 内联样式 -->
+        <div class="basic" :style="styleObj" @click="changeClass">{{info}}</div>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                info: '你好',
+                a: 'normal',
+                classArr: ['type1', 'type2', 'type3'],
+                classObj: {
+                    type1: false,
+                    type2: false
+                },
+                styleObj: {
+                    fontSize: '40px',
+                    backgroundColor: 'skyblue',
+                    color: 'red'
+                }
+            },
+            methods: {
+                changeClass() {
+                    // this.a == 'happy' ? this.a = 'normal' : this.a = 'happy';
+                    var arr = ['happy', 'sad', 'normal']
+                    this.a = arr[Math.floor(Math.random() * 3)]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

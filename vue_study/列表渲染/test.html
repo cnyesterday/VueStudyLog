@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+
+        }
+
+        #root ul li {
+            margin-top: 10px;
+        }
+    </style>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="p in persons" :key="p.id" @click="add">
+                {{p.hero}} is {{p.level}}level
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [
+                    { id: 001, hero: 'PA', level: 25 },
+                    { id: 002, hero: 'ES', level: 20 },
+                    { id: 003, hero: 'TA', level: 28 },
+                ]
+            },
+            methods: {
+                add() {
+                    persons.push({ id: 004, hero: 'TB', level: 17 })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

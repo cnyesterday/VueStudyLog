@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <style>
+        input {
+            margin-top: 20px;
+            /* display: block; */
+        }
+    </style>
+    <script src="../../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        姓：<input type="text" placeholder="请输入您的姓" v-model="firstName"><br>
+        名：<input type="text" placeholder="请输入您的名" v-model="lastName">
+        <p>全名：{{fullName}}</p>
+        <!-- <p>全名：{{fullName}}</p>
+        <p>全名：{{fullName}}</p>
+        <p>全名：{{fullName}}</p>
+        <p>全名：{{fullName}}</p> -->
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: '',
+                lastName: '',
+                fullName: '',
+            },
+            watch: {
+                // 计算属性computed能完成的功能,侦听函数watch都可以完成
+                // watch能完成的功能,computed不一定能完成，例如：watch可以进行异步操作
+                // 两个重要的小原则：
+                // 1. 所有被Vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象
+                // 2. 所有不被Vue所管理的函数（定时器回调函数、Ajax的回调函数等），最好写成箭头函数，这样this的指向才是vm或组件实例对象，不然就是window
+                firstName(newValue) {
+                    setTimeout(() => {  // 这里必须要用箭头函数写
+                        this.fullName = newValue + this.lastName
+                    }, 1000)
+                },
+                lastName(newValue) {
+                    this.fullName = this.firstName + newValue
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
