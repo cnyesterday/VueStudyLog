@@ -38,6 +38,7 @@
                     // 并不是每一次用到fullName时都会被调用，在调用之后会缓存
                     get() {
                         // console.log(this); 此处的this是vm
+                        console.log('get is called');  // 验证初次读取以及所依赖的数据变化时被调用
                         return this.firstName + '-' + this.lastName
                     },
                     set(value) {
