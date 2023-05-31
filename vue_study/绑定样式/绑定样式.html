@@ -6,46 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../vue.js/vue.js"></script>
     <style>
+        /* basic 的效果是设置盒子的宽高以及给盒子加一个灰色边框 */
         .basic {
             width: 1200px;
             height: 200px;
             border: 1px solid #ccc;
         }
-
+        /* happy的作用是给盒子加一个黄色背景同时将盒子变为橙色边框 */
         .happy {
 
             background-color: yellow;
             border: 1px solid orange;
         }
-
+        /* sad的作用是给盒子加一个蓝色的背景同时将盒子变成红色边框 */
         .sad {
 
             background-color: blue;
             border: 1px solid red;
         }
-
+        /* normal的作用是给盒子加一个灰色的背景同时将盒子变成紫色边框 */
         .normal {
 
             background-color: #ccc;
             border: 1px solid purple;
         }
-
+        /* type1的作用是给盒子添加一个圆角 */
         .type1 {
             border-radius: 10px;
         }
-
+        /* type2的作用是使盒子内的字体变大 */
         .type2 {
             font-size: 40px;
         }
-
+        /* type3的作用是使盒子内的内容水平居中 */
         .type3 {
             text-align: center;
         }
     </style>
-    <script src="../../vue.js">
-
-    </script>
 </head>
 
 <body>
@@ -54,10 +53,10 @@
         <div class="basic" :class="a" @click="changeClass">{{info}}</div>
         <br>
         <!-- 绑定class样式 --数组写法，适用于样式的个数不确定，名字也不确定 -->
-        <div class="basic" :class="classArr" @click="changeClass">{{info}}</div>
+        <div class="basic" :class="classArr">{{info}}</div>
         <br>
         <!-- 绑定class样式 --字符串写法，适用于样式的类名确定，名字也确定，但是要动态决定用不用 -->
-        <div class="basic" :class="classObj" @click="changeClass">{{info}}</div>
+        <div class="basic" :class="classObj" >{{info}}</div>
         <br>
         <!-- 内联样式 -->
         <div class="basic" :style="styleObj" @click="changeClass">{{info}}</div>
