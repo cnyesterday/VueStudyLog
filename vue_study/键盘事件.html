@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style></style>
-    <script src="../vue.js"></script>
+    <script src="./vue.js/vue.js"></script>
 </head>
 
 <body>
     <div id="root">
         <!-- <input type="text" placeholder="按下回车提示信息" @keyup.ctrl="showInfo"> -->
-        <input type="text" placeholder="按下回车提示信息" @keyup.ctrl.y="showInfo"> <!-- @keyup.ctrl.y  只有按下ctrl+y的时候才会触发事件-->
+        <input type="text" placeholder="按下回车提示信息" @keyup.huiche="showInfo"> <!-- @keyup.ctrl.y  只有按下ctrl+y的时候才会触发事件-->
         <!-- <input type="text" placeholder="按下回车提示信息" @keyup.caps-lock="showInfo">  CapsLock是两个单词组成的，所以写的时候写成caps-lock -->
     </div>
     <script>
@@ -35,6 +35,8 @@
         （1）配合keyup使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才触发
         （2）配合keydown使用：正常触发事件。
         */
+
+        Vue.config.keyCodes.huiche = 13;// 定义了一个别名按键
         new Vue({
             el: '#root',
             data: {
