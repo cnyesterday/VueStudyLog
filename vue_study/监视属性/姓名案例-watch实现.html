@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js/vue.js"></script>
+    <style>
+        input {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "root">
+        姓：<input type="text" placeholder="请输入您的姓" v-model = "firstName"></br>
+        名: <input type="text" placeholder="请输入您的名" v-model = "lastName"></br>
+        <span>全名：{{fullName}}</span>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        data : {
+            firstName : '',
+            lastName : '',
+            fullName :''
+        },
+        computed: {
+            /* fullName : {
+                get(){
+                    return this.firstName + '-' + this.lastName;
+                },
+                set(value) {
+                    var arr = value.split('-');
+                    this.firstName = arr[0];
+                    this.lastName = arr[1];
+                }
+            } */
+            // fullName() {return this.firstName+'-'+this.lastName}
+        },
+        watch: {
+            // 计算属性不可以开启异步任务去维护数据，从下面的例子可以看到，watch可以实现定时器的效果，但是computed就不可以。
+            // 感觉就是计算属性对于一些并不复杂的功能可以很好的节省代码量，但是对于较为复杂的需求，用watch更好。
+            // 在写代码的时候遇到计算属性和监视属性都可以作的事情，可以优先用计算属性
+            firstName(newValue){
+                setTimeout(() => {
+                    this.fullName = newValue + this.lastName;
+                }, 1000);
+                
+            },
+            lastName(newValue) {
+                this.fullName = this.firstName + newValue;
+            }
+        },
+    })
+</script>
+</html>
