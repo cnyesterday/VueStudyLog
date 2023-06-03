@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style></style>
-    <script src="../../vue.js"></script>
+    <script src="../vue.js/vue.js"></script>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             <!-- 这是第二种写法 -->
             <li v-for="p in persons" :key="p.id">
                 {{p.name}}-{{p.age}}
-                <button @click.once="add"></button>
+                <button @click.once="add">点击</button>
             </li>
         </ul>
     </div>
@@ -36,7 +36,7 @@
             methods: {
                 add() {
                     var p = { id: 004, name: '老六', age: 40 }
-
+                    
                 }
             }
         })
