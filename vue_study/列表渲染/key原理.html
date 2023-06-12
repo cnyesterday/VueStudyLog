@@ -1,46 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style></style>
     <script src="../vue.js/vue.js"></script>
 </head>
-
 <body>
     <div id="root">
-        <h2>人员列表</h2>
+        <h2>key的原理</h2>
+        <button @click.once = "addHero">click ME to create a new hero</button>
         <ul>
-            <!-- 这是第一种写法 -->
-            <!-- <li v-for="(p,index) in persons" :key="index"> -->
-            <!-- 这是第二种写法 -->
-            <li v-for="p in persons" :key="p.id">
-                {{p.name}}-{{p.age}}
-                <button @click.once="add">点击</button>
+            <!-- <li v-for="h in hero" :key="index"> -->
+            <!-- 如果使用index的话就是用hero里面的数组序列作为key，使用这种方式如果在数组头插入元素的时候，会有两个问题 -->
+            <!-- 问题一: 效率低,Vue会多次操作DOM -->
+            <!-- 问题二: 在数组头插入新元素的时候,原先的index顺序会被打乱,以下为例,原先的index:0 是PA,但是插入之后PA就变成了index:1 -->
+            <!-- 通过问题二，会产生页面混乱的，如以下的这个demo，原先PA后面的input框里面的内容，变成了DP的input框的内容 -->
+            <!-- 当没有些key的时候,Vue会自动将index作为key,这种情况下如果要实现在数组前插入元素,就会出大问题 -->
+            <!-- 比如像添加数据,在前面显示,这种业务场景很常见   , 所以在些for in的时候,最好要设计key -->
+
+            <!-- important!!! -->
+            <!-- 造成这种原因是因为在Vue之间有一个虚拟DOM -->
+            <!-- 在页面中看到的是真实DOM,虚拟DOM只存在于内存当中 -->
+            <!-- code  to  real DOM  的过程中是code → 虚拟DOM  →  真实DOM -->
+            <!-- 如果使用index作为key的话,会重新操作(原数组长度为n),n+1次dom -->
+            <!-- 详细的渲染过程以及虚拟dom和真实dom的运行可以点击如下连接观看  p30,key的作用原理 -->
+            <!-- https://www.bilibili.com/video/BV1Zy4y1K7SH?p=30&vd_source=16cabc87d3a922e2b864ab6e8f7283b0 -->
+            
+            <li v-for="h in hero" :key="hero.id">
+                <!-- v-for   可以用for in的方法去写,也可以用for of的方法去写 -->
+            <!-- <li v-for="h of hero" :key="hero.id"> -->
+                <!-- 上方的h是形参，指向的是data中的hero中的某一个数据 -->
+                <!-- 下方的h.heroname,指向的是某一个hero中的heroName数据 -->
+                {{h.heroName}} -- {{h.level}}
+                <input type="text">
             </li>
         </ul>
     </div>
     <script>
         new Vue({
-            el: '#root',
-            data: {
-                persons: [
-                    { id: 001, name: '张三', age: 18 },
-                    { id: 002, name: '李四', age: 19 },
-                    { id: 003, name: '王五', age: 20 },
+            el:'#root',
+            data:{
+                hero:[
+                    {id:'001',heroName:'PA',level:'6'},
+                    {id:'002',heroName:'TB',level:'7'},
+                    {id:'003',heroName:'TA',level:'8'},
                 ]
             },
             methods: {
-                add() {
-                    var p = { id: 004, name: '老六', age: 40 }
-                    
+                addHero() {
+                    const newHero = {id:'004',heroName:'DP',level:'9'};
+                    this.hero.unshift(newHero);
                 }
-            }
+            },
         })
     </script>
 </body>
-
 </html>
