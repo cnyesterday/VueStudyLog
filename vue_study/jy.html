@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js/vue.js"></script>
+    <script src="./jyh.js"></script>
+</head>
+<body>
+    <div id="root">
+    please input : <input type="text" v-module="str">
+        <p>{{strCut(str)}}</p>
+    </div>
+    <!-- DCCB227FFFFFFFFFFFFFFF07FE01FFFFFFFF01BF45521F1F1F1F1F1F1F1F1F1F20202020310002C9512D32513536414330322020202020204137000000004670301B35B641323230353235303030312D32202020323330383231202000006A01313237464D413632374C3633333220200000FFFFFFFFFFFF0000000000000000 -->
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                str:'',
+            },
+            methods: {
+               strCut(str) {
+                let strArr = [];
+                for(let i = 0; i < str.length;i += 2)strArr.push(str.slice(i,i + 2));
+                let arr2 = [];
+                for(let i = 0;i < strArr.length; i++){arr2[i] = parseInt(strArr[i],16);}
+                let k = 0;
+                for(i = 0; i < arr2.length; i++){k = k+arr2[i];}
+                k = num + "";
+                let arr3 = k.split('');
+                let str2 = arr3[arr3.length - 2] + '' + arr[arr3.length - 1];
+                let last = parseInt(str2).toString(16).toUpperCase();
+                if(last.length == 1) {
+                    last = last.padStart(2,'0')
+                }
+                return last
+                }
+            },
+            
+        })
+
+    </script>
+</body>
+</html>

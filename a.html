@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue_study/vue.js/vue.js"></script>
+    <style>
+        #root   {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        #str1{
+            width: 40%;
+            height: 500px;
+            margin-right: 100px;
+            resize: none;
+        }
+
+        #str2{
+            width: 40%;
+            height: 500px;
+            resize: none;
+        }
+
+        button{
+            margin-top: 50px;
+            background-color: skyblue;
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <textarea name="" id="str1" v-model = 'str1'></textarea>
+        <textarea name="" id="str2" v-model = 'str2'></textarea>
+        <!-- <textarea type="text" v-model="str1" id="str1">
+        <textarea type="text" v-model="str2" id="str2"> -->
+    </br>
+        <button @click="duibi">对比</button>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                str1:'',
+                str2:'',
+            },
+            methods: {
+                duibi() {
+                    if (str1.length != str2.length) {
+            return error;
+        }
+        var k = 0;
+        var j = 0;
+        for (i = 0; i < str1.length/2; i=i+2) {
+            if (str1.charAt(i) + str1.charAt(i+1) != str2.charAt(i) + str2.charAt(i+1)) {
+                return console.log('在' + j + 'BYTE不一致');
+                k = k + 1;
+            }
+            j = j + 1; 
+        }
+        return 
+        console.log('共有' + k + '处不一致'),
+        console.log(str2.length/2);
+                }
+            },
+        })
+    </script>
+</body>
+</html>
